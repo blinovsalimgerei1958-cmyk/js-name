@@ -2,24 +2,27 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Главная</title>
+  <title>Главная</title> 
+<meta name="viewport"content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <nav>
-    <a href="#home">Главная</a>
-    <a href="#reviews">Отзывы</a>
-    <a href="#contact">Контакты</a>
-    <a href="#quote">Цитата</a>
+    <a href="about.html">Обо мне</a>
+    <a href="contact.html">Контакты</a>
+    <a href="portfolio.html">Портфолио</a>
   </nav>
 
-  <h1 id="home">Добро пожаловать!</h1>
+  <h1>Добро пожаловать!</h1>
   <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Северное сияние" width="300">
   <p>Это главная страница.</p>
-  <button onclick="showMessage()">Нажми меня</button>
+  <script>
+    function showMessage() {
+      alert('Ты супер! 😄');
+    }
+  </script>
 
-  <section id="reviews">
+  <section class="fade-in">
     <h2>Отзывы</h2>
     <div class="review">
       <p><strong>Анна:</strong> Отличный сайт! Всё понятно и красиво 😊</p>
@@ -29,53 +32,21 @@
     </div>
   </section>
 
-  <section id="contact">
+  <section class="fade-in">
     <h2>Форма обратной связи</h2>
-    <form action="#" method="post">
-      <label for="name">Имя:</label><br>
-      <input type="text" id="name" name="name" required><br><br>
-
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
-<input type="email" id="email" name="email" required><br><br>
-
-      <label for="message">Сообщение:</label><br>
-      <textarea id="message" name="message" rows="4" cols="30" required></textarea><br><br>
-
-      <button type="submit">Отправить</button>
-    </form>
+<form action="https://formspree.io/f/your-code" method="POST">
+  <label>Имя:<br><input type="text" name="name" required></label><br>
+  <label>Email:<br><input type="email" name="_replyto" required></label><br>
+  <label>Сообщение:<br><textarea name="message" required></textarea></label><br>
+  <button type="submit">Отправить</button>
+   </form>
   </section>
 
-  <section class="quote" id="quote">
+  <section class="fade-in quote">
     <h2>Цитата дня</h2>
     <blockquote>
       "Успех — это сумма маленьких усилий, повторяемых изо дня в день."
     </blockquote>
-  </section>
-
-  <footer>
-    <p>© 2025 Все права защищены</p>
-  </footer>
-<label for="message">Сообщение:</label><br>
-      <textarea id="message" name="message" rows="4" cols="30" required></textarea><br><br>
-
-      <button type="submit">Отправить</button>
-    </form>
-  </section>
-
-  <section class="quote" id="quote">
-    <h2>Цитата дня</h2>
-    <blockquote>
-      "Успех — это сумма маленьких усилий, повторяемых изо дня в день."
-    </blockquote>
-  </section>
-
-  <section>
-    <h2>Галерея</h2>
-    <img id="sliderImage" src="https://www.w3schools.com/w3images/mountains.jpg" alt="Слайд" width="300">
-    <br>
-    <button onclick="prevSlide()">← Назад</button>
-    <button onclick="nextSlide()">Вперёд →</button>
   </section>
 
   <video width="320" height="240" controls>
@@ -88,38 +59,33 @@
   </footer>
 
   <script>
-    function showMessage() {
-      alert('Ты супер! 😄');
-    }
-
-    const images = [
-      "https://www.w3schools.com/w3images/mountains.jpg",
-      "https://www.w3schools.com/w3images/forest.jpg",
-      "https://www.w3schools.com/w3images/nature.jpg"
-    ];
-    let current = 0;
-
-    function showSlide(index) {
-      const img = document.getElementById("sliderImage");
-      img.src = images[index];
-    }
-function prevSlide() {
-      current = (current - 1 + images.length) % images.length;
-      showSlide(current);
-    }
-
-    function nextSlide() {
-      current = (current + 1) % images.length;
-      showSlide(current);
-    }
-
     window.onload = function() {
-      showSlide(current);
+      alert('Добро пожаловать на мой сайт!');
     };
-  </script>
 
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.1
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
 </body>
-</html>
+  </html>
+  
+
+
 
 
 

@@ -76,8 +76,9 @@
         observer.unobserve(entry.target);
       });
     }, appearOptions);
-
-    faders.forEach(fader => {
+appearOnScroll.observe(fader);
+    });
+   faders.forEach(fader => {
       appearOnScroll.observe(fader);
     });
   </script>
